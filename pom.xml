@@ -38,6 +38,7 @@
             <artifactId>kafka_${scala.binary.version}</artifactId>
             <version>${kafka.version}</version>
         </dependency>
+
         <!-- flink - kafka connector -->
         <dependency>
             <groupId>org.apache.flink</groupId>
