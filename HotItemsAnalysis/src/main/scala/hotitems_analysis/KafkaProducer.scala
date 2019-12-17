@@ -16,7 +16,10 @@ object KafkaProducer {
     // 定义一个kafka producer
     val producer = new KafkaProducer[String, String](properties)
     // 从文件中读取数据，发送
-    val bufferedSource = io.Source.fromFile( "F:\\MyProject\\UserBehaviorAnalysisFlink\\HotItemsAnalysis\\src\\main\\resources\\UserBehavior.csv" )
+    // 用相对路径定义数据源
+        val resource = getClass.getResource("/UserBehavior.csv")
+
+    val bufferedSource = io.Source.fromFile( resource.getPath )
     for( line <- bufferedSource.getLines() ){
       val record = new ProducerRecord[String, String](topic, line)
       producer.send(record)

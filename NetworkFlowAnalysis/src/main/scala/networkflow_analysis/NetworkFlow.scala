@@ -98,7 +98,6 @@ class TopNHotUrls(topSize: Int) extends KeyedProcessFunction[Long, UrlViewCount,
     }
 
     //    urlState.clear()
-
     val sortedUrlViews = allUrlViews.sortWith(_._2 > _._2).take(topSize)
 
     // 格式化结果输出
@@ -107,7 +106,7 @@ class TopNHotUrls(topSize: Int) extends KeyedProcessFunction[Long, UrlViewCount,
     for( i <- sortedUrlViews.indices ){
       val currentUrlView = sortedUrlViews(i)
       result.append("NO").append(i + 1).append(":")
-        .append(" UR L= ").append(currentUrlView._1)
+        .append(" URL = ").append(currentUrlView._1)
         .append(" 访问量 = ").append(currentUrlView._2).append("\n")
     }
     result.append("=============================")
